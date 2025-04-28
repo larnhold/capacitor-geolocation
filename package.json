@@ -1,4 +1,10 @@
 {
   "name": "@larnhold/capacitor-geolocation",
-  "version": "1.0.0"
+  "version": "1.0.1",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.14.8",
+    "lerna": "^8.1.8",
+    "typescript": "~5.4.5"
+  }
 }
