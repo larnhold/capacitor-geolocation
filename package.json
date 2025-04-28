@@ -1,10 +1,74 @@
 {
-  "name": "root",
-  "private": true,
-  "dependencies": {},
+  "name": "@larnhold/capacitor-geolocation",
+  "version": "7.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/larnhold/capacitor-geolocation.git"
+  },
+  "bugs": {
+    "url": "https://github.com/larnhold/capacitor-geolocation/issues"
+  },
+  "keywords": [
+    "capacitor",
+    "plugin",
+    "native"
+  ],
+  "scripts": {
+    "docgen": "docgen --api BarcodeScannerPlugin --output-readme API_REFERENCE.md",
+    "lint": "npm run eslint && npm run prettier -- --check && npm run swiftlint -- lint",
+    "eslint": "eslint . --ext ts",
+    "prettier": "prettier \"**/*.{css,html,ts,js,java}\" --plugin=prettier-plugin-java",
+    "swiftlint": "node-swiftlint",
+    "build": "npm run clean && tsc && rollup -c rollup.config.mjs --bundleConfigAsCjs",
+    "clean": "rimraf ./dist",
+    "watch": "tsc --watch",
+    "prepublishOnly": "npm run build",
+    "verify": "npm run verify:ios && npm run verify:android && npm run verify:web",
+    "verify:ios": "cd ios && pod install && xcodebuild -workspace Plugin.xcworkspace -scheme Plugin -destination \"platform=iOS Simulator,name=iPhone 12\" && cd ..",
+    "verify:android": "cd android && ./gradlew clean build test && cd ..",
+    "verify:web": "npm run build"
+  },
   "devDependencies": {
-    "@types/node": "^20.14.8",
+    "@capacitor/android": "^7.2.0",
+    "@capacitor/cli": "^7.2.0",
+    "@capacitor/core": "^7.2.0",
+    "@capacitor/docgen": "^0.3.0",
+    "@capacitor/ios": "^7.2.0",
     "lerna": "^8.1.8",
-    "typescript": "~5.4.5"
+    "@ionic/eslint-config": "^0.4.0",
+    "@ionic/prettier-config": "^4.0.0",
+    "@ionic/swiftlint-config": "^2.0.0",
+    "eslint": "^8.57.0",
+    "husky": "^8.0.3",
+    "prettier": "^3.4.2",
+    "prettier-plugin-java": "^2.6.6",
+    "pretty-quick": "^3.1.3",
+    "rimraf": "^6.0.1",
+    "rollup": "^4.30.1",
+    "swiftlint": "^2.0.0",
+    "typescript": "~5.0.4"
+  },
+  "peerDependencies": {
+    "@capacitor/core": ">=7.0.0"
+  },
+  "capacitor": {
+    "ios": {
+      "src": "ios"
+    },
+    "android": {
+      "src": "android"
+    }
+  },
+  "prettier": "@ionic/prettier-config",
+  "swiftlint": "@ionic/swiftlint-config",
+  "eslintConfig": {
+    "extends": "@ionic/eslint-config/recommended",
+    "ignorePatterns": [
+      "dist/**/*"
+    ]
+  },
+  "homepage": "https://github.com/larnhold/capacitor-geolocationr#readme",
+  "directories": {
+    "example": "examples"
   }
 }
